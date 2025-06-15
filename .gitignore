@@ -1,0 +1,24 @@
+___Documentacion_Instrucciones
+
+# Entorno virtual
+venv/
+ENV/
+env/
+.venv/
+.env
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Otros comunes
+.DS_Store
+*.log
+
+# Archivos de testing
+test*.*
+
+# Archivos de configuración
+desktop.ini
+

@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Implementar la libreria de dataTable como clase par uso general",
+    "description": "",
+    "priority": "alta",
+    "effort_hours": 4.0,
+    "status": "pendiente",
+    "assigned_to": "Carlos"
+  },
+  {
+    "id": 2,
+    "title": "Revisar con el codigo anterior de las tablas generadas que dataTable tiene compatibilidad con las tablas ya implementadas",
+    "description": "",
+    "priority": "media",
+    "effort_hours": 10.0,
+    "status": "pendiente",
+    "assigned_to": "Maria"
+  }
+]

@@ -1,0 +1,30 @@
+# Jupyter Notebook and kernel for interactive Python
+jupyter
+ipykernel
+
+# Environment variable management
+python-dotenv
+
+# AI and LLM integrations
+openai       # OpenAI API client
+#anthropic    # Anthropic API client
+#google-genai # Google Generative AI API client
+
+# Data validation and schema management
+pydantic     # Data validation and settings management
+jsonschema   # JSON schema validation
+
+# HTTP requests and tokenization
+requests     # HTTP requests library
+tiktoken     # Tokenization for LLMs
+
+# Testing framework
+pytest       # Unit testing framework
+
+# Web application and CORS handling
+flask        # Web application framework
+flask-cors   # Cross-Origin Resource Sharing for Flask
+
+#paquetes adicionales para futuras integraciones
+sqlalchemy  # SQL toolkit and Object Relational Mapper  
+pymysql     # MySQL database connector for Python   

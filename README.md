@@ -195,3 +195,18 @@ MIT License
 
 ## Contacto
 Carlos Hernández — carlos@laorotava.org
+
+## Cuaderno de pruebas Jupyter
+
+Se incluye el cuaderno `entregable2_test_cuaderno.ipynb` en la raíz del proyecto, que permite probar de forma interactiva y guiada todas las funcionalidades del backend, incluyendo:
+
+- Creación de tareas básicas.
+- Enriquecimiento de tareas con IA (descripción, categorización, estimación de esfuerzo, auditoría).
+- Extracción y visualización de tokens consumidos.
+- Pruebas de endpoints y validaciones.
+- Descarga de resultados enriquecidos.
+
+**¿Cómo usarlo?**
+1. Activa el entorno virtual y lanza Jupyter Notebook o VS Code.
+2. Abre el archivo `entregable2_test_cuaderno.ipynb`.
+3. Ejecuta las celdas en orden para comprobar y validar toda la integración del sistema.

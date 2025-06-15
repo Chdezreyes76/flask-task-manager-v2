@@ -112,16 +112,15 @@ Registrar y acumular el número de tokens consumidos por cada tarea directamente
 - **Modificar `app/schemas/task_schema.py`:**
   - Añadir campo `token_usage` en los esquemas de tarea.
   - Validar que sea un entero >= 0.
-- **Modificar los endpoints de IA:**
-  - Cada vez que se realice una operación de IA sobre una tarea, sumar los tokens consumidos al campo `token_usage` de la tarea antes de almacenarla o devolverla.
+- **Integrar la lógica de acumulación de tokens en las fases 3 y 4 (ver detalles en cada fase).**
 - (Opcional) Mostrar el coste estimado acumulado junto con el campo de tokens.
 
 ---
 
-## 🛠️ FASE 3: Manager de IA para lógica de negocio
+## 🛠️ FASE 3: Manager de IA para lógica de negocio (mejorada)
 
 ### 🎯 Objetivo
-Crear un manager que orqueste las operaciones de IA manteniendo la separación de responsabilidades.
+Crear un manager que orqueste las operaciones de IA manteniendo la separación de responsabilidades y actualice el campo de tokens acumulados.
 
 ### ✅ Tareas
 
@@ -130,6 +129,7 @@ Crear un manager que orqueste las operaciones de IA manteniendo la separación d
   - Métodos que implementan la lógica de cada endpoint de IA
   - Validación de datos antes de enviar a OpenAI
   - Post-procesamiento de respuestas (parsing, limpieza, validación)
+  - **En cada método, sumar los tokens consumidos (devueltos por OpenAIService) al campo `token_usage` de la tarea y persistir el valor actualizado.**
 
 - **Métodos principales:**
   - `describe_task(task)` → Genera description y actualiza la tarea
@@ -143,10 +143,10 @@ Crear un manager que orqueste las operaciones de IA manteniendo la separación d
 
 ---
 
-## 🌐 FASE 4: Nuevas rutas para endpoints de IA
+## 🌐 FASE 4: Nuevas rutas para endpoints de IA (mejorada)
 
 ### 🎯 Objetivo
-Implementar los 4 nuevos endpoints RESTful que integren las capacidades de IA.
+Implementar los 4 nuevos endpoints RESTful que integren las capacidades de IA y aseguren la actualización del campo `token_usage` en cada operación.
 
 ### ✅ Tareas
 
@@ -159,22 +159,26 @@ Implementar los 4 nuevos endpoints RESTful que integren las capacidades de IA.
   1. **`POST /ai/tasks/describe`:**
      - Recibe: Task con description vacía
      - Valida: Todos los campos excepto description
-     - Retorna: Task con description generada
+     - Llama al manager de IA, actualiza y persiste el campo `token_usage` de la tarea
+     - Retorna: Task con description generada y tokens acumulados
 
   2. **`POST /ai/tasks/categorize`:**
      - Recibe: Task sin category
      - Valida: Todos los campos excepto category  
-     - Retorna: Task con category asignada
+     - Llama al manager de IA, actualiza y persiste el campo `token_usage` de la tarea
+     - Retorna: Task con category asignada y tokens acumulados
 
   3. **`POST /ai/tasks/estimate`:**
      - Recibe: Task sin effort_hours
      - Valida: title, description, category obligatorios
-     - Retorna: Task con effort_hours estimado (número)
+     - Llama al manager de IA, actualiza y persiste el campo `token_usage` de la tarea
+     - Retorna: Task con effort_hours estimado (número) y tokens acumulados
 
   4. **`POST /ai/tasks/audit`:**
      - Recibe: Task completa excepto risk_analysis y risk_mitigation
      - Genera: Análisis de riesgos y plan de mitigación
-     - Retorna: Task con ambos campos completados
+     - Llama al manager de IA, actualiza y persiste el campo `token_usage` de la tarea
+     - Retorna: Task con ambos campos completados y tokens acumulados
 
 - **Manejo de errores específicos de IA:**
   - Rate limits de OpenAI

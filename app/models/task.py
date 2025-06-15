@@ -18,8 +18,9 @@ class Task:
         category (str): Categoría de la tarea (Frontend, Backend, Testing, etc.).
         risk_analysis (str): Análisis de riesgos generado por IA.
         risk_mitigation (str): Plan de mitigación de riesgos generado por IA.
+        token_usage (int): Uso de tokens en la tarea.
     """
-    def __init__(self, id=None, title=None, description=None, priority=None, effort_hours=None, status=None, assigned_to=None, category=None, risk_analysis=None, risk_mitigation=None):
+    def __init__(self, id=None, title=None, description=None, priority=None, effort_hours=None, status=None, assigned_to=None, category=None, risk_analysis=None, risk_mitigation=None, token_usage=0):
         """
         Inicializa una nueva instancia de Task.
 
@@ -34,6 +35,7 @@ class Task:
             category (str): Categoría de la tarea (Frontend, Backend, Testing, etc.).
             risk_analysis (str): Análisis de riesgos generado por IA.
             risk_mitigation (str): Plan de mitigación de riesgos generado por IA.
+            token_usage (int): Uso de tokens en la tarea.
         """
         self.id = id
         self.title = title
@@ -45,6 +47,7 @@ class Task:
         self.category = category
         self.risk_analysis = risk_analysis
         self.risk_mitigation = risk_mitigation
+        self.token_usage = token_usage if token_usage is not None else 0
 
     def to_dict(self):
         """
@@ -63,7 +66,8 @@ class Task:
             "assigned_to": self.assigned_to,
             "category": self.category,
             "risk_analysis": self.risk_analysis,
-            "risk_mitigation": self.risk_mitigation
+            "risk_mitigation": self.risk_mitigation,
+            "token_usage": self.token_usage
         }
 
     @classmethod
@@ -87,7 +91,8 @@ class Task:
             assigned_to=data.get("assigned_to"),
             category=data.get("category"),
             risk_analysis=data.get("risk_analysis"),
-            risk_mitigation=data.get("risk_mitigation")
+            risk_mitigation=data.get("risk_mitigation"),
+            token_usage=data.get("token_usage", 0)
         )
 
     def is_ai_enhanced(self):

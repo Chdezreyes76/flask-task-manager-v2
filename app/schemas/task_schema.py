@@ -36,6 +36,7 @@ class TaskCreateSchema(BaseModel):
     category: Optional[TaskCategory] = Field(None, description="Categoría de la tarea clasificada por IA")
     risk_analysis: Optional[str] = Field(None, min_length=1, description="Análisis de riesgos generado por IA")
     risk_mitigation: Optional[str] = Field(None, min_length=1, description="Plan de mitigación de riesgos generado por IA")
+    token_usage: int = Field(0, ge=0, description="Tokens acumulados consumidos por la tarea")
 
     @field_validator('title', 'description', 'assigned_to', 'risk_analysis', 'risk_mitigation')
     @classmethod
